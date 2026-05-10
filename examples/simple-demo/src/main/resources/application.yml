@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/perm_demo?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+perm:
+  jwt-secret: your-super-secret-key-at-least-32-characters-long
+  # admin-password: admin123  # 可选，配置初始密码，不配置则自动生成随机密码
+  # exclude-paths:  # 可选，放行路径
+  #   - /public/**
+  # allowed-origins:  # 可选，CORS 跨域
+  #   - http://localhost:5173

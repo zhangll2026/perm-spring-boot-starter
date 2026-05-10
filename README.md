@@ -2,6 +2,16 @@
 
 > 零侵入的 Spring Boot 权限管理组件 —— 引入即用，自动扫描，界面管理
 
+## 📸 功能截图
+
+| 登录页 | 用户管理 |
+|--------|---------|
+| ![登录页](docs/screenshots/login.png) | ![用户管理](docs/screenshots/users.png) |
+
+| 角色管理 | 接口资源 |
+|--------|---------|
+| ![角色管理](docs/screenshots/roles.png) | ![接口资源](docs/screenshots/resources.png) |
+
 ## 是什么
 
 一个 Spring Boot Starter 形式的权限管理 jar 包，业务项目引入后：
@@ -33,9 +43,29 @@ perm-parent
 
 ---
 
-## 快速开始
+## 🚀 快速开始
 
-### 单体模式（推荐先用这个）
+### 方式一：运行示例项目（推荐）
+
+我们在 `examples/simple-demo` 目录下提供了一个完整的示例项目，直接运行即可体验！
+
+```bash
+# 编译安装 perm-spring-boot-starter 到本地 Maven 仓库
+cd perm-spring-boot-starter
+mvn clean install -DskipTests
+
+# 运行示例项目
+cd examples/simple-demo
+mvn spring-boot:run
+```
+
+启动后访问：`http://localhost:8080/perm-admin/index.html`
+
+---
+
+### 方式二：在你的项目中使用
+
+#### 单体模式（推荐先用这个）
 
 **1. 引入依赖**
 
