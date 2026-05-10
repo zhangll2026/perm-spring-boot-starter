@@ -88,6 +88,25 @@ public class PermAuthController {
         return Result.success();
     }
 
+    /**
+     * 获取当前用户的权限列表（用于前端控制页面/按钮显隐）
+     */
+    @GetMapping("/permissions")
+    public Result<UserPermissionsDTO> permissions(@RequestHeader("Authorization") String authHeader) {
+        String token = extractBearerToken(authHeader);
+        if (token == null) {
+            return Result.error(401, "Token无效");
+        }
+        Long userId = permAuthService.parseToken(token);
+        
+        UserPermissionsDTO dto = UserPermissionsDTO.builder()
+                .userId(userId)
+                .permissions(permAuthService.getUserPermittedPaths(userId))
+                .roles(permAuthService.getUserRoles(userId))
+                .build();
+        return Result.success(dto);
+    }
+
     private String extractBearerToken(String authHeader) {
         if (StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")) {
             return authHeader.substring(7);

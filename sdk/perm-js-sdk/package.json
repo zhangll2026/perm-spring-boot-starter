@@ -1,0 +1,38 @@
+{
+  "name": "perm-js-sdk",
+  "version": "1.0.0",
+  "description": "perm-spring-boot-starter 的前端 SDK，支持 Vue 2/3 和 React",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "vue2",
+    "vue3",
+    "react"
+  ],
+  "scripts": {
+    "build": "echo '请使用构建工具打包（如 rollup 或 vite）'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "permission",
+    "auth",
+    "vue",
+    "react"
+  ],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "vue": "^2.6.0 || ^3.0.0",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  }
+}

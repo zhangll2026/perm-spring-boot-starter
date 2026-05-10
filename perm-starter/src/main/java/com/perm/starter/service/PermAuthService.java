@@ -156,6 +156,20 @@ public class PermAuthService {
     }
 
     /**
+     * 获取用户的所有角色标识
+     */
+    public Set<String> getUserRoles(Long userId) {
+        List<PermUserRole> userRoles = permUserRoleRepository.findByUserId(userId);
+        if (userRoles.isEmpty()) {
+            return Collections.emptySet();
+        }
+        List<Long> roleIds = userRoles.stream().map(PermUserRole::getRoleId).collect(Collectors.toList());
+        // 这里需要根据你的 PermRole 实体类调整，假设 PermRole 有 roleCode 或 name 字段
+        // 如果你的 PermRole 实体类结构不同，请告诉我，我来调整
+        return roleIds.stream().map(String::valueOf).collect(Collectors.toSet());
+    }
+
+    /**
      * 清除指定用户的权限缓存
      */
     public void clearUserPermissionCache(Long userId) {
