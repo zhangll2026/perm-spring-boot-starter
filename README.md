@@ -382,12 +382,6 @@ perm-client-starter-1.0.0.jar  # 微服务客户端 Starter
 
 ---
 
-## 💬 联系我
-
-微信：`17791352167`
-
----
-
 ## License
 
 MIT
