@@ -2,6 +2,7 @@ package com.perm.starter.service;
 
 import com.perm.common.entity.PermRoleResource;
 import com.perm.common.entity.PermUserRole;
+import com.perm.common.entity.PermRole;
 import com.perm.starter.config.PermissionProperties;
 import com.perm.starter.repository.PermResourceRepository;
 import com.perm.starter.repository.PermRoleResourceRepository;
@@ -31,6 +32,7 @@ public class PermAuthService {
     private final PermUserRoleRepository permUserRoleRepository;
     private final PermRoleResourceRepository permRoleResourceRepository;
     private final PermResourceRepository permResourceRepository;
+    private final com.perm.starter.repository.PermRoleRepository permRoleRepository;
     private final PermissionProperties properties;
 
     /** 权限缓存：userId -> METHOD:PATH集合 */
@@ -156,7 +158,7 @@ public class PermAuthService {
     }
 
     /**
-     * 获取用户的所有角色标识
+     * 获取用户的所有角色编码（如 ADMIN、USER）
      */
     public Set<String> getUserRoles(Long userId) {
         List<PermUserRole> userRoles = permUserRoleRepository.findByUserId(userId);
@@ -164,9 +166,10 @@ public class PermAuthService {
             return Collections.emptySet();
         }
         List<Long> roleIds = userRoles.stream().map(PermUserRole::getRoleId).collect(Collectors.toList());
-        // 这里需要根据你的 PermRole 实体类调整，假设 PermRole 有 roleCode 或 name 字段
-        // 如果你的 PermRole 实体类结构不同，请告诉我，我来调整
-        return roleIds.stream().map(String::valueOf).collect(Collectors.toSet());
+        return permRoleRepository.findAllById(roleIds).stream()
+                .filter(role -> Boolean.TRUE.equals(role.getEnabled()))
+                .map(role -> role.getCode())
+                .collect(Collectors.toSet());
     }
 
     /**
